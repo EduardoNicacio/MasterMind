@@ -1,0 +1,225 @@
+﻿@using Persistence.Entities
+@model Game
+
+@{
+    ViewBag.Title = "MasterMind - The Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MasterMind</h1>
+<style type="text/css">
+    .board {
+        border: #666 1px solid;
+        box-shadow: #666 5px 5px 10px;
+    }
+
+        .board td {
+            height: 32px;
+            width: 32px;
+            padding: 0;
+            text-align: center;
+            vertical-align: middle;
+            border: #ccc 1px dotted;
+        }
+
+    .match {
+        min-width:64px !important;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .match td {
+            height: 16px;
+            width: 16px;
+            text-align: center;
+            vertical-align: middle;
+            border: #ccc 1px dotted;
+            border-collapse: collapse;
+        }
+
+    .bg-red, .bg-red:hover {
+        background-color: red;
+        color: #fff;
+    }
+
+    .bg-green, .bg-green:hover {
+        background-color: green;
+        color: #fff;
+    }
+
+    .bg-blue, .bg-blue:hover {
+        background-color: blue;
+        color: #fff;
+    }
+
+    .bg-yellow, .bg-yellow:hover {
+        background-color: yellow;
+        color: #000;
+    }
+
+    .bg-orange, .bg-orange:hover {
+        background-color: orange;
+        color: #000;
+    }
+
+    .bg-purple, .bg-purple:hover {
+        background-color: purple;
+        color: #fff;
+    }
+
+    .bg-cyan, .bg-cyan:hover {
+        background-color: cyan;
+        color: #000;
+    }
+
+    .bg-magenta, .bg-magenta:hover {
+        background-color: magenta;
+        color: #fff;
+    }
+</style>
+<div>
+    <label>Good luck, @Model.Players.First().Name</label>
+    <hr />
+    @Html.HiddenFor(model => model.Id)
+    <table class="board">
+        @{
+            for (int i = 0; i < Model.TotalLines; i++)
+            {
+                <tr id="line-@i">
+                    @{
+                for (int j = 0; j < Model.TotalColors; j++)
+                {
+                    if (i == 0)
+                    {
+                        <td onclick="changeColor('column-@i-@j');" id="column-@i-@j" style="background: white"></td>
+                    }
+                    else
+                    {
+                        <td id="column-@i-@j" style="background: white"></td>
+                    }
+                }
+                <td>
+                    <table class="match">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                        <td>
+                            @{
+                if (i == 0)
+                {
+                    <input type="button" style="margin:0 5px 0 5px; font-size:.9em;" value="Check Line" onclick="checkLine(@i, @Model.TotalColors);" />
+                }
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+    <br /><br />
+    <div>
+        @Html.Hidden("hdnColorSelected", "red")
+
+        <div class="btn-group">
+            <a href="#" class="btn btn-default btn-sm bg-red" onclick="selectColor('red');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-green" onclick="selectColor('green');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-blue" onclick="selectColor('blue');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-yellow" onclick="selectColor('yellow');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-orange" onclick="selectColor('orange');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-purple" onclick="selectColor('purple');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-cyan" onclick="selectColor('cyan');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm bg-magenta" onclick="selectColor('magenta');"><i class="fa fa-map-pin"></i></a>
+            <a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrow-left fa-align-left"></i> Choose the color</a>
+        </div>
+        @*<hr />
+            <div style="background-color: red; float: left;">
+                <a href="#" onclick="selectColor('red');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: green; float: left">
+                <a href="#" onclick="selectColor('green');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: blue; float: left">
+                <a href="#" onclick="selectColor('blue');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: yellow; float: left">
+                <a href="#" onclick="selectColor('yellow');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: orange; float: left">
+                <a href="#" onclick="selectColor('orange');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: purple; float: left">
+                <a href="#" onclick="selectColor('purple');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: cyan; float: left">
+                <a href="#" onclick="selectColor('cyan');" style="text-decoration-color: white">Select</a>
+            </div>
+            <div style="background-color: magenta; float: left">
+                <a href="#" onclick="selectColor('magenta');" style="text-decoration-color: white">Select</a>
+            </div>*@
+    </div>
+</div>
+<hr />
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+        });
+
+        function selectColor(color) {
+            $("#hdnColorSelected").val(color);
+        }
+
+        function changeColor(id) {
+            $("#" + id).css("background-color", $("#hdnColorSelected").val());
+        }
+
+        function checkLine(line, totalColuns) {
+            var values = "";
+            for (var i = 0; i < totalColuns; i++) {
+                values += rgb2Hex($("#column-" + line + "-" + i).css("background-color")) + ";";
+            }
+
+            $.ajax({
+                url: '@Url.Action("CheckLine", "MasterMind")',
+                type: 'POST',
+                data: 'values=' + values,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        // Atualizar informações da tela
+                        // Bloquear linhas anteriores
+                        // Habilitar próxima linha
+                        // Alert se ganhou ou fim de jogo
+                        // ......
+                    } else {
+                        alert("Problem validation. Try again.");
+                    }
+                }
+            });
+
+            alert(values);
+        }
+
+        function rgb2Hex(rgb) {
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        }
+
+        function hex(x) {
+            var hexDigits = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
+            return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+        }
+    </script>
+}
