@@ -1,27 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Domain.Enums;
-using Domain.Services;
-using Persistence;
-using Persistence.Entities;
-using Persistence.Repositories;
+﻿// <copyright file="MasterMindController.cs" company="VanHackathon May 2016.">
+// Copyleft Alexandre Rodrigues, Eduardo Nicacio, Lucas Lucci 2016.
+// </copyright>
+// <date>21/05/2016</date>
+// <summary>MasterMind controller.</summary>
 
 namespace MasterMindSPA.Controllers
 {
+    using Domain.Services;
+    using System;
+    using System.Web.Mvc;
+
+    /// <summary>
+    /// MasterMind Controller.
+    /// </summary>
     public class MasterMindController : Controller
     {
+        /// <summary>
+        /// Default action.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult Index()
         {
-            //new DatabaseContext().CreateDataBase();
-            //var serviceGame = new GameService();
-            //serviceGame.Get(1);
-            //StartNewGame(false, 8, "Alexandre");
             return View();
         }
 
+        /// <summary>
+        /// Game action.
+        /// </summary>
+        /// <param name="multiplayer">If the game is multiplayer.</param>
+        /// <param name="totalColors">Total colors (default = 8).</param>
+        /// <param name="playerName">Player name.</param>
+        /// <returns></returns>
         public ActionResult Game(bool multiplayer, int totalColors, string playerName)
         {
             try
@@ -37,6 +46,11 @@ namespace MasterMindSPA.Controllers
             }
         }
 
+        /// <summary>
+        /// Check line action.
+        /// </summary>
+        /// <param name="valueColumn">Column value.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult CheckLine(string valueColumn)
         {

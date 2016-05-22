@@ -7,6 +7,41 @@
 }
 
 <h1>MasterMind</h1>
+
+<script type="text/javascript">
+
+    /********** Control Boxes **********/
+    function openBox(el) {
+        var display = document.getElementById(el).style.display;
+        document.getElementById(el).style.display = 'block';
+    }
+
+    function closeBox(el) {
+        var display = document.getElementById(el).style.display;
+        document.getElementById(el).style.display = 'none';
+    }
+    /*******************************/
+
+    /********** Drag and Drop *************/
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("img", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("img");
+        var sel = document.getElementById(data);
+        ev.target.appendChild(sel.cloneNode(true));
+        ev.target.src = sel.src;
+        ev.target.id = sel.id;
+    }
+    /*************************************/
+
+</script>
 <style type="text/css">
     .board {
         border: #666 1px solid;
@@ -23,7 +58,7 @@
         }
 
     .match {
-        min-width:64px !important;
+        min-width: 64px !important;
         border: none;
         margin: 0;
         padding: 0;
@@ -143,31 +178,6 @@
             <a href="#" class="btn btn-default btn-sm bg-magenta" onclick="selectColor('magenta');"><i class="fa fa-map-pin"></i></a>
             <a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrow-left fa-align-left"></i> Choose the color</a>
         </div>
-        @*<hr />
-            <div style="background-color: red; float: left;">
-                <a href="#" onclick="selectColor('red');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: green; float: left">
-                <a href="#" onclick="selectColor('green');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: blue; float: left">
-                <a href="#" onclick="selectColor('blue');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: yellow; float: left">
-                <a href="#" onclick="selectColor('yellow');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: orange; float: left">
-                <a href="#" onclick="selectColor('orange');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: purple; float: left">
-                <a href="#" onclick="selectColor('purple');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: cyan; float: left">
-                <a href="#" onclick="selectColor('cyan');" style="text-decoration-color: white">Select</a>
-            </div>
-            <div style="background-color: magenta; float: left">
-                <a href="#" onclick="selectColor('magenta');" style="text-decoration-color: white">Select</a>
-            </div>*@
     </div>
 </div>
 <hr />

@@ -1,0 +1,202 @@
+@charset "utf-8";
+
+* {
+	margin:0;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:#900;
+}
+
+html {
+	height:100%;
+	width:100%;
+}
+
+body {
+	height:100%;
+    background: -webkit-linear-gradient(rgb(255,255,0), rgb(255,65,0));
+    background: -o-linear-gradient(rgb(255,255,0), rgb(255,65,0));
+    background: -moz-linear-gradient(rgb(255,255,0), rgb(255,65,0));
+    background: linear-gradient(rgb(255,255,0), rgb(255,65,0));
+}
+
+#general {
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-image:url(images/strips.png);
+    background-repeat:repeat-x;
+    background-position:bottom;
+}
+
+#logo {
+	margin:auto;
+	padding-top:80px;
+	width:80%;
+	height:auto;
+	background-image:url(images/board.png);
+	background-repeat:no-repeat;
+}
+
+#nickname {
+	height:60px;
+	width:300px;
+	margin:40px 0;
+	background-color:#FFF;
+	border-radius:10px;
+	border:3px solid;
+	border-color:rgb(255,51,0);
+	text-align:center;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:28px;
+	font-weight:bold;
+	color:#333;
+}
+
+#btns {
+	position:relative;
+	float:left;
+	width:25%;
+	height:80px;
+	margin:0 12%;
+}
+
+#btnsingle {
+	border:0;
+	background:none;
+	width:321px;
+	height:60px;
+	background-image:url(images/single.png);
+}
+
+#btnsingle:hover {
+	width:353px;
+	height:66px;
+	background-size:353px 66px;
+	-ms-transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    transform: rotate(-7deg);
+}
+
+#btnmulti {
+	border:0;
+	background:none;
+	width:286px;
+	height:60px;
+	background-image:url(images/multi.png);
+}
+
+#btnmulti:hover {
+	width:315px;
+	height:66px;
+	background-size:315px 66px;
+	-ms-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+    transform: rotate(7deg);
+}
+
+/******************* Game Page *********************/
+
+#top {
+	position:relative;
+	height:100px;
+	width:800px;
+	margin:auto;
+	padding-top:20px;
+}
+
+#side {
+	position:relative;
+	float:left;
+	height:auto;
+	width:250px;
+	margin:auto;
+	padding:10px;
+}
+
+#side img:hover {
+	-ms-transform: scale(1.2,1.2);
+    -webkit-transform: scale(1.2,1.2);
+    transform: scale(1.2,1.2);
+	cursor:pointer;
+}
+
+#middle {
+	position:relative;
+	height:auto;
+	width:800px;
+	margin:auto;
+}
+
+.box {
+	position:fixed;
+	width:500px;
+	height:525px;
+	margin-left:50%;
+	margin-top:40px;
+	border-radius: 25px;
+	left:-250px;
+	z-index:1;
+	display:none;
+	background: -webkit-linear-gradient(rgb(0,204,204), rgb(0,51,255));
+    background: -o-linear-gradient(rgb(0,204,204), rgb(0,51,255));
+    background: -moz-linear-gradient(rgb(0,204,204), rgb(0,51,255));
+    background: linear-gradient(rgb(0,204,204), rgb(0,51,255));
+}
+
+.box a {
+	text-decoration:none;
+	color:#040346;
+}
+
+/***************************************************/
+
+
+/****************** Board Styles *******************/
+
+#board {
+	position:relative;
+	float:left;
+	height:446px;
+	width:483px;
+	margin:auto;
+	padding-top:6px;
+	padding-left:3px;
+	background:url(images/gameboard.png) no-repeat;
+}
+
+.pins {
+	position:relative;
+	float:left;
+	height:30px;
+	width:30px;
+	margin:5px;
+	background:url(images/hole.png) no-repeat;
+}
+
+.check {
+	position:relative;
+	float:left;
+	height:30px;
+	width:70px;
+	margin:5px;
+	background:url(images/holesSmall.png) no-repeat;
+}
+
+.btnCheck {
+	width:30px;
+	height:30px;
+	border:none;
+	background-image:url(images/check.png);
+	background-color:transparent;
+	cursor:pointer;
+}
+
+.btnCheck:hover {
+	background-image:url(images/checkHover.png);
+	background-color:transparent;
+	cursor:pointer;
+}
+
+/***************************************************/
