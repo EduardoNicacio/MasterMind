@@ -7,7 +7,7 @@
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: bold;
-    color: #900;
+    color: #222;
 }
 
 html {
@@ -68,10 +68,10 @@ h1, h2, h3, h4, h5, h6 {
 #btnsingle {
     border: 0;
     background: none;
-    width: 350px;
+    width: 321px;
     height: 60px;
-    background-image: url(images/single.png);
-    background-size:cover;
+    background: url(images/single.png) no-repeat center top;
+    background-size:contain;
 }
 
     #btnsingle:hover {
@@ -82,15 +82,16 @@ h1, h2, h3, h4, h5, h6 {
         -webkit-transform: rotate(-7deg);
         transform: rotate(-7deg);
         cursor: pointer;
+        background-size:contain;
     }
 
 #btnmulti {
     border: 0;
     background: none;
-    width: 300px;
+    width: 286px;
     height: 60px;
-    background-image: url(images/multi.png);
-    background-size:cover;
+    background: url(images/multi.png) no-repeat center top;
+    background-size:contain;
 }
 
     #btnmulti:hover {
@@ -100,7 +101,8 @@ h1, h2, h3, h4, h5, h6 {
         -ms-transform: rotate(7deg);
         -webkit-transform: rotate(7deg);
         transform: rotate(7deg);
-        cursor: pointer;
+        cursor:not-allowed;
+        background-size:contain;
     }
 
 /******************* Game Page *********************/

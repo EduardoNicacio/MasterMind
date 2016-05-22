@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>How to Play MasterMind</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Content/styles.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            background: -webkit-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* Chrome 10+, Saf5.1+ */
+            background: -moz-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* FF3.6+ */
+            background: -ms-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* IE10 */
+            background: -o-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* Opera 11.10+ */
+            background: linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* W3C */
+        }
+
+        p {
+            line-height: 2em;
+            text-align: justify;
+        }
+
+        a, a:hover {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>HOW TO PLAY MASTERMIND</h1>
+        <h2>1. Have the code maker select a code.</h2>
+        <p>
+            Mastermind board games have a row of holes set apart at one end of the board, hidden from view under a hinged shield.
+            The person who plays the code maker secretly takes a few colored pegs and places them in that row of holes, in any order.
+            This is the code that the code breaker will try to guess.
+            <br>
+            •If you're playing a video game version, the computer will usually do this instead of a player.
+            <br>
+            •The code maker must put a peg in every hole. He has the option to use more than one peg of the same color. For example, he could put down Green Yellow Yellow Blue.
+
+        </p>
+        <h2>2. Have the code breaker place her first guess.</h2>
+        <p>
+            The other player, or the only player in video game versions, tries to guess what the hidden code is.
+            Sitting on the opposite end of the board, she picks up the large colored pegs and places them in the nearest row of large holes.<br>
+            •For example, she could put down Blue Orange Green Purple. (Your Mastermind game might have more holes or different colored pegs.)
+
+        </p>
+        <h2>3. Ask the code maker to give feedback.</h2>
+        <p>
+            Next to each "guess row" is a small square with enough holes for four tiny pegs.
+            These pegs only come in two colors: white and red (or white and black in some versions).
+            The code maker uses this to give clues about how good the guess was.
+            The code maker must be honest, and always puts down pegs using these instructions:
+            <br>
+            •Each white peg means that one of the guessed pegs is correct, but is in the wrong hole.
+            <br>
+            •Each red (or black) peg means that one of the guessed pegs is correct, and is in the right hole.
+            <br>
+            •The order of the white and black pegs does not matter.
+        </p>
+        <h2>4. Learn through examples.</h2>
+        <p>
+            In our example above, the code maker secretly chose Yellow Yellow Green Blue. The code breaker guessed Blue Orange Green Purple.
+            The code maker looks at this guess to find out which hint pegs to place:<br>
+            •Peg #1 is Blue. There is a blue in the code, but it is not in position #1. This earns a white hint peg.<br>
+            •Peg #2 is Orange. There is no orange in the code, so no hint peg gets put down.<br>
+            •Peg #3 is Green. There is a green in the code, and it is in position #3. This earns a red (or black) hint peg.
+            <br>
+            •Peg #4 is Purple. There is no purple in the code, so no hint peg gets put down.
+
+        </p>
+        <h2>5. Repeat with the next row.</h2>
+        <p>
+            The code breaker now has a little information. In our example, she got one white hint, one red hint, and two empty holes.
+            That means of the four pegs she put down, one of them belongs but needs to be moved to a different hole, one of them is already in the right place, and two of them don't belong in the code.
+            She thinks for a while and makes a second guess in the next highest row:
+            <br>
+            •The code breaker guesses Blue Yellow Orange Pink this time.
+            <br>
+            •The code maker checks this guess: Blue belongs but is in the wrong place; Yellow belongs and is in the right place; Orange doesn't belong; Pink doesn't belong.<br>
+            •The code maker puts down one white hint peg and one red hint peg.
+
+        </p>
+        <h2>6. Continue until the code is guessed or there are no more guesses left.</h2>
+        <p>
+            The code breaker continues to make guesses, using information from all the previous hints she earned.
+            If she manages to guess the complete code in exactly the right order, she wins the game.
+            If she fails to guess and fills every row with pegs, the code maker wins instead.
+        </p>
+        <p>Source: <a href="http://www.wikihow.com/Play-Mastermind">wikihow.com</a></p>
+    </div>
+</body>
+</html>
