@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
+﻿// <copyright file="WebApiConfig.cs" company="VanHackathon May 2016.">
+// Copyleft Alexandre Rodrigues, Eduardo Nicacio, Lucas Lucci 2016.
+// </copyright>
+// <date>21/05/2016</date>
+// <summary>WebApi configuration class.</summary>
 
 namespace MasterMindSPA
 {
+    using Microsoft.Owin.Security.OAuth;
+    using Newtonsoft.Json.Serialization;
+    using System.Web.Http;
+
+    /// <summary>
+    /// WebApi configuration class.
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Registers the Http configuration.
+        /// </summary>
+        /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

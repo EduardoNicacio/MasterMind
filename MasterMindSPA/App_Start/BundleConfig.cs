@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Optimization;
+﻿// <copyright file="BundleConfig.cs" company="VanHackathon May 2016.">
+// Copyleft Alexandre Rodrigues, Eduardo Nicacio, Lucas Lucci 2016.
+// </copyright>
+// <date>21/05/2016</date>
+// <summary>Bundle configuration class.</summary>
 
 namespace MasterMindSPA
 {
+    using System.Web.Optimization;
+
+    /// <summary>
+    /// Bundle configuration class.
+    /// </summary>
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        /// <summary>
+        /// Register Bundles. For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        /// </summary>
+        /// <param name="bundles">Bundle Collection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
