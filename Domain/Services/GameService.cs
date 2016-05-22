@@ -17,6 +17,13 @@ namespace Domain.Services
     /// </summary>
     public class GameService
     {
+        private readonly DatabaseContext _dataContext;
+
+        public GameService(DatabaseContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         /// <summary>
         /// Returns an instance of Game that matches to the id parameter.
         /// </summary>
@@ -24,14 +31,8 @@ namespace Domain.Services
         /// <returns>Game object.</returns>
         public Game Get(int id)
         {
-            Game game;
+            return new GameRepository(_dataContext).Get(id);
 
-            using (var dataContext = new DatabaseContext())
-            {
-                game = new GameRepository(dataContext).Get(id);
-            }
-
-            return game;
         }
 
         /// <summary>
@@ -41,14 +42,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Insert(Game game)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new GameRepository(dataContext).Insert(game);
-            }
-
-            return success;
+            return new GameRepository(_dataContext).Insert(game);
         }
 
         /// <summary>
@@ -58,14 +52,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Update(Game game)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new GameRepository(dataContext).Update(game);
-            }
-
-            return success;
+            return new GameRepository(_dataContext).Update(game);
         }
 
         /// <summary>
@@ -75,14 +62,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Remove(int id)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new GameRepository(dataContext).Remove(id);
-            }
-
-            return success;
+            return new GameRepository(_dataContext).Remove(id);
         }
 
         /// <summary>
@@ -94,28 +74,22 @@ namespace Domain.Services
         /// <returns></returns>
         public Game StartNewGame(bool multiplayer, int totalColors, string playerName)
         {
-            Game game;
+            var parameterRepository = new ParameterRepository(_dataContext);
+            var parameterTotalLines = parameterRepository.Get("TotalLines");
+            var totalLines = parameterTotalLines != null ? int.Parse(parameterTotalLines.Value) : 10; //Default 10 lines.
 
-            using (var dataContext = new DatabaseContext())
+            var game = new Game
             {
-                var parameterRepository = new ParameterRepository(dataContext);
-                var parameterTotalLines = parameterRepository.Get("TotalLines");
-                var totalLines = parameterTotalLines != null ? int.Parse(parameterTotalLines.Value) : 10; //Default 10 lines.
+                Multiplayer = multiplayer,
+                Score = totalLines,
+                Status = ((char)(multiplayer ? GameStatus.WaitingPlayer : GameStatus.Started)).ToString(),
+                TotalColors = totalColors,
+                TotalLines = totalLines,
+                Code = CreateCode(totalColors),
+                Players = new List<Player> { new Player { Name = playerName } }
+            };
 
-                game = new Game
-                {
-                    Multiplayer = multiplayer,
-                    Score = totalLines,
-                    Status = ((char)(multiplayer ? GameStatus.WaitingPlayer : GameStatus.Started)).ToString(),
-                    TotalColors = totalColors,
-                    TotalLines = totalLines,
-                    Code = CreateCode(dataContext, totalColors),
-                    Players = new List<Player> { new Player { Name = playerName } }
-                };
-
-                new GameRepository(dataContext).Insert(game);
-            }
-
+            new GameRepository(_dataContext).Insert(game);
             return game;
         }
 
@@ -125,10 +99,10 @@ namespace Domain.Services
         /// <param name="dataContext">Database context.</param>
         /// <param name="totalColors">Total Colors (1-8)</param>
         /// <returns>Returns a list of Column objects.</returns>
-        private List<Column> CreateCode(DatabaseContext dataContext, int totalColors)
+        private List<Column> CreateCode(int totalColors)
         {
             var columns = new List<Column>();
-            var colorRepository = new ColorRepository(dataContext);
+            var colorRepository = new ColorRepository(_dataContext);
             var colors = colorRepository.GetListRandom(totalColors);
             var position = 1;
 

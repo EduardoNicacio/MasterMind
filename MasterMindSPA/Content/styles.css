@@ -26,7 +26,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Corben', Georgia, Times, serif;
-    color:#fff;
+    color: #fff;
 }
 
 #general {
@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
     background-repeat: no-repeat;
 }
 
-#nickname {
+#txtName {
     height: 60px;
     width: 300px;
     margin: 40px 0;
@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #btns {
-    position:static;
+    position: static;
     float: left;
     width: 50%;
     height: auto;
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 321px;
     height: 60px;
     background: url(images/single.png) no-repeat center top;
-    background-size:contain;
+    background-size: contain;
 }
 
     #btnsingle:hover {
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
         -webkit-transform: rotate(-7deg);
         transform: rotate(-7deg);
         cursor: pointer;
-        background-size:contain;
+        background-size: contain;
     }
 
 #btnmulti {
@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 286px;
     height: 60px;
     background: url(images/multi.png) no-repeat center top;
-    background-size:contain;
+    background-size: contain;
 }
 
     #btnmulti:hover {
@@ -101,8 +101,8 @@ h1, h2, h3, h4, h5, h6 {
         -ms-transform: rotate(7deg);
         -webkit-transform: rotate(7deg);
         transform: rotate(7deg);
-        cursor:not-allowed;
-        background-size:contain;
+        cursor: not-allowed;
+        background-size: contain;
     }
 
 /******************* Game Page *********************/
@@ -140,18 +140,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .box {
     position: fixed;
-    width: 500px;
-    height: 525px;
+    width: 960px;
+    height: 400px;
+    padding: 0;
     margin-left: 50%;
-    margin-top: 40px;
-    border-radius: 25px;
-    left: -250px;
+    margin-top: 0;
+    left: -480px;
     z-index: 1;
     display: none;
-    background: -webkit-linear-gradient(rgb(0,204,204), rgb(0,51,255));
-    background: -o-linear-gradient(rgb(0,204,204), rgb(0,51,255));
-    background: -moz-linear-gradient(rgb(0,204,204), rgb(0,51,255));
-    background: linear-gradient(rgb(0,204,204), rgb(0,51,255));
 }
 
     .box a {
@@ -213,7 +209,7 @@ h1, h2, h3, h4, h5, h6 {
 footer p {
     font-family: 'Raleway', sans-serif;
     color: #fff;
-    font-size:.8em;
-    text-align:center;
-    bottom:0 !important;
+    font-size: .8em;
+    text-align: center;
+    bottom: 0 !important;
 }

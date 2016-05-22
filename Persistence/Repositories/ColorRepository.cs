@@ -38,6 +38,16 @@ namespace Persistence.Repositories
         }
 
         /// <summary>
+        /// Returns an instance of Color that matches to the rgb color.
+        /// </summary>
+        /// <param name="color">Color Rgb.</param>
+        /// <returns>Color object.</returns>
+        public Color GetByColor(string color)
+        {
+            return _dataContext.Colors.FirstOrDefault(c => c.Rgb == color);
+        }
+
+        /// <summary>
         /// Returns a random list of Color objects.
         /// </summary>
         /// <param name="quantity">Quantity of colors.</param>

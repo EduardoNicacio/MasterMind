@@ -1,16 +1,13 @@
 ﻿@using Persistence.Entities
 @model Game
-
 @{
     ViewBag.Title = "MasterMind - The Game";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>MasterMind</h1>
-
 <script type="text/javascript">
 
-    /********** Control Boxes **********/
+    /********** Information Boxes Controls **********/
     function openBox(el) {
         var display = document.getElementById(el).style.display;
         document.getElementById(el).style.display = 'block';
@@ -22,7 +19,16 @@
     }
     /*******************************/
 
-    /********** Drag and Drop *************/
+    function openBox(el) {
+        var display = document.getElementById(el).style.display;
+        document.getElementById(el).style.display = 'block';
+    }
+
+    function closeBox(el) {
+        var display = document.getElementById(el).style.display;
+        document.getElementById(el).style.display = 'none';
+    }
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -39,13 +45,31 @@
         ev.target.src = sel.src;
         ev.target.id = sel.id;
     }
-    /*************************************/
 
 </script>
 <style type="text/css">
+    table {
+        border-collapse: separate;
+        border-spacing: 1px;
+    }
+
+    table, td {
+        border: 1px solid black;
+        -ms-border-radius: 16px;
+        -moz-border-radius: 16px;
+        border-radius: 16px;
+        padding: 5px;
+    }
+
     .board {
-        border: #666 1px solid;
-        box-shadow: #666 5px 5px 10px;
+        border: #c79810 1px solid;
+        box-shadow: #000 5px 5px 10px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
+        background: #eab92d; /* Old browsers */
+        background: -moz-linear-gradient(top, #eab92d 0%, #c79810 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #eab92d 0%,#c79810 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #eab92d 0%,#c79810 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eab92d', endColorstr='#c79810',GradientType=0 ); /* IE6-9 */
     }
 
         .board td {
@@ -74,114 +98,134 @@
         }
 
     .bg-red, .bg-red:hover {
-        background-color: red;
+        background-color: #e74c3c;
         color: #fff;
     }
 
     .bg-green, .bg-green:hover {
-        background-color: green;
+        background-color: #2ecc71;
         color: #fff;
     }
 
     .bg-blue, .bg-blue:hover {
-        background-color: blue;
+        background-color: #3498db;
         color: #fff;
     }
 
     .bg-yellow, .bg-yellow:hover {
-        background-color: yellow;
+        background-color: #f1c40f;
         color: #000;
     }
 
     .bg-orange, .bg-orange:hover {
-        background-color: orange;
+        background-color: #e67e22;
         color: #000;
     }
 
     .bg-purple, .bg-purple:hover {
-        background-color: purple;
+        background-color: #9b59b6;
         color: #fff;
     }
 
     .bg-cyan, .bg-cyan:hover {
-        background-color: cyan;
+        background-color: #1abc9c;
         color: #000;
     }
 
     .bg-magenta, .bg-magenta:hover {
-        background-color: magenta;
+        background-color: #de6bae;
         color: #fff;
     }
 </style>
+<!--------------- Information Boxes ------------------>
+<div id="howto" class="box">
+    <div align="right" style="height:25px; color:#FFF; padding-right:30px;"><a href="#" onclick="closeBox('howto')">CLOSE</a></div>
+    <iframe src="~/rules.html" width="800" height="500" frameborder="0"></iframe>
+</div>
+
+<div id="about" class="box">
+    <div align="right" style="height:25px; color:#FFF; padding-right:30px;"><a href="#" onclick="closeBox('about')">CLOSE</a></div>
+    <iframe src="~/about.html" width="800" height="500" frameborder="0"></iframe>
+</div>
+<!---------------------------------------------------->
 <div>
     <label>Good luck, @Model.Players.First().Name</label>
     <hr />
     @Html.HiddenFor(model => model.Id)
-    <table class="board">
-        @{
-            for (int i = 0; i < Model.TotalLines; i++)
-            {
-                <tr id="line-@i">
-                    @{
-                for (int j = 0; j < Model.TotalColors; j++)
+    @Html.HiddenFor(model => model.TotalColors)
+    @Html.HiddenFor(model => model.TotalLines)
+    @Html.HiddenFor(model => model.Players.First().Name)
+    @Html.Hidden("hdnActiveLine", "0")
+
+    <div class="col-md-8">
+        <table class="board">
+            @{
+                for (int i = 0; i < Model.TotalLines; i++)
                 {
+                    <tr id="line-@i">
+                        @{
+                    for (int j = 0; j < Model.TotalColors; j++)
+                    {
+                        <td onclick="changeColor('@i', '@j');" id="column-@i-@j" style="background: white"></td>
+                    }
+                    <td>
+                        <table id="tbMath-@i" class="match">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                            <td>
+                                <div id="divBtn-@i">
+                                    @{
                     if (i == 0)
                     {
-                        <td onclick="changeColor('column-@i-@j');" id="column-@i-@j" style="background: white"></td>
+                        <input type="button" style="margin: 0 5px 0 5px; font-size: .9em;" value="Check Line" onclick="checkLine(@i, @Model.TotalColors);" />
                     }
-                    else
-                    {
-                        <td id="column-@i-@j" style="background: white"></td>
-                    }
+                                    }
+                                </div>
+                            </td>
+                        }
+                    </tr>
                 }
-                <td>
-                    <table class="match">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </td>
-                        <td>
-                            @{
-                if (i == 0)
-                {
-                    <input type="button" style="margin:0 5px 0 5px; font-size:.9em;" value="Check Line" onclick="checkLine(@i, @Model.TotalColors);" />
-                }
-                            }
-                        </td>
-                    }
-                </tr>
             }
-        }
-    </table>
-    <br /><br />
-    <div>
-        @Html.Hidden("hdnColorSelected", "red")
+        </table>
+        <br /><br />
+        <div>
+            @Html.Hidden("hdnColorSelected", "#" + Model.Code.OrderBy(c => c.Color.Id).ToList().First().Color.Rgb)
+            <div class="btn-group">
 
-        <div class="btn-group">
-            <a href="#" class="btn btn-default btn-sm bg-red" onclick="selectColor('red');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-green" onclick="selectColor('green');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-blue" onclick="selectColor('blue');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-yellow" onclick="selectColor('yellow');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-orange" onclick="selectColor('orange');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-purple" onclick="selectColor('purple');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-cyan" onclick="selectColor('cyan');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm bg-magenta" onclick="selectColor('magenta');"><i class="fa fa-map-pin"></i></a>
-            <a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrow-left fa-align-left"></i> Choose the color</a>
+                @{
+                    foreach (var column in Model.Code.OrderBy(c => c.Color.Id).ToList())
+                    {
+                        var color = column.Color;
+                        <a href="#" class="btn btn-default btn-sm bg-@color.Name.ToLower()" onclick="selectColor('#@color.Rgb');"><i class="fa fa-map-pin"></i></a>
+                    }
+                }
+
+                <a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrow-left fa-align-left"></i> Choose the color</a>
+            </div>
         </div>
+    </div>
+    <div class="col-md-4">
+        <!------------------- Side Buttons -------------------->
+        <div id="side">
+            <a href="#" onclick="openBox('howto')"><img src="~/Content/images/howTo.png" width="201" height="132"></a>
+            <a href="#" onclick="openBox('about')"><img src="~/Content/images/about.png" width="199" height="130"></a>
+        </div>
+        <!----------------------------------------------------->
     </div>
 </div>
 <hr />
-
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -191,35 +235,94 @@
             $("#hdnColorSelected").val(color);
         }
 
-        function changeColor(id) {
-            $("#" + id).css("background-color", $("#hdnColorSelected").val());
+        function changeColor(line, column) {
+            if ($("#hdnActiveLine").val() == line) {
+                $("#column-" + line + "-" + column).css("background-color", $("#hdnColorSelected").val());
+            }
         }
 
         function checkLine(line, totalColuns) {
             var values = "";
             for (var i = 0; i < totalColuns; i++) {
-                values += rgb2Hex($("#column-" + line + "-" + i).css("background-color")) + ";";
+                var color = rgb2Hex($("#column-" + line + "-" + i).css("background-color")).replace("#", "") + ";";
+                if (color == "ffffff;") {
+                    alert("Please, fill in the entire row.");
+                    return false;
+                }
+
+                values += color;
             }
 
             $.ajax({
                 url: '@Url.Action("CheckLine", "MasterMind")',
                 type: 'POST',
-                data: 'values=' + values,
+                data: 'valueColumns=' + values + '&gameId=' + $("#Id").val(),
                 dataType: 'json',
                 success: function (data) {
                     if (data.success) {
-                        // Atualizar informações da tela
-                        // Bloquear linhas anteriores
-                        // Habilitar próxima linha
-                        // Alert se ganhou ou fim de jogo
-                        // ......
+                        var totalColors = parseInt($("#TotalColors").val());
+                        if (totalColors == data.countCorrectPositions) {
+                            if (confirm("You WIN!! Play again?")) {
+                                window.location = "/MasterMind/Game?multiplayer=false&totalColors=8&playerName=" + $("#Name").val();
+                            } else {
+                                window.location = "/Team";
+                            }
+                        }
+
+                        var htmlMath = "<tr>";
+                        var totalTdPerTr = 4;
+                        var countTds = 0;
+                        for (var i = 0; i < data.countCorrectPositions; i++) {
+                            if (totalTdPerTr == countTds) {
+                                htmlMath += "</tr><tr>";
+                            }
+
+                            htmlMath += "<td style='background: black'></td>";
+                            countTds++;
+                        }
+
+                        for (var i = 0; i < data.countCorrectColors; i++) {
+                            if (totalTdPerTr == countTds) {
+                                htmlMath += "</tr><tr>";
+                            }
+
+                            htmlMath += "<td style='background: white'></td>";
+                            countTds++;
+                        }
+
+                        for (var i = 0; i < data.countWrong; i++) {
+                            if (totalTdPerTr == countTds) {
+                                htmlMath += "</tr><tr>";
+                            }
+
+                            htmlMath += "<td></td>";
+                            countTds++;
+                        }
+
+                        htmlMath += "</tr>";
+                        $("#tbMath-" + (data.nextLine - 2)).html(htmlMath);
+
+                        var totalLines = $("#TotalLines").val();
+                        if (data.nextLine < (parseInt(totalLines) + 1)) {
+                            $("#divBtn-" + (data.nextLine - 2)).html("");
+                            $("#divBtn-" + (data.nextLine - 1)).html("<input type='button' style='margin: 0 5px 0 5px; font-size: .9em;' value='Check Line' onclick='checkLine(" + (data.nextLine - 1) + ", " + $("#TotalColors").val() + ");' />");
+                            $("#hdnActiveLine").val((data.nextLine - 1));
+
+                        } else {
+                            var message = data.countCorrectPositions == totalColors ? "You WIN!! Play again?" : "You lose!! Play again?";
+
+                            if (confirm(message)) {
+                                window.location = "/MasterMind/Game?multiplayer=false&totalColors=8&playerName=" + $("#Name").val();
+                            } else {
+                                window.location = "/Team";
+                            }
+                        }
+
                     } else {
                         alert("Problem validation. Try again.");
                     }
                 }
             });
-
-            alert(values);
         }
 
         function rgb2Hex(rgb) {

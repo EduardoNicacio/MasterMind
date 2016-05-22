@@ -15,6 +15,13 @@ namespace Domain.Services
     /// </summary>
     public class PlayerService
     {
+        private readonly DatabaseContext _dataContext;
+
+        public PlayerService(DatabaseContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         /// <summary>
         /// Returns a Player object that matches to id parameter.
         /// </summary>
@@ -22,14 +29,7 @@ namespace Domain.Services
         /// <returns>Player object.</returns>
         public Player Get(int id)
         {
-            Player player;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                player = new PlayerRepository(dataContext).Get(id);
-            }
-
-            return player;
+            return new PlayerRepository(_dataContext).Get(id);
         }
 
         /// <summary>
@@ -39,14 +39,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Insert(Player player)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new PlayerRepository(dataContext).Insert(player);
-            }
-
-            return success;
+            return new PlayerRepository(_dataContext).Insert(player);
         }
 
         /// <summary>
@@ -56,14 +49,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Update(Player player)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new PlayerRepository(dataContext).Update(player);
-            }
-
-            return success;
+            return new PlayerRepository(_dataContext).Update(player);
         }
 
         /// <summary>
@@ -73,14 +59,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Remove(int id)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new PlayerRepository(dataContext).Remove(id);
-            }
-
-            return success;
+            return new PlayerRepository(_dataContext).Remove(id);
         }
     }
 }

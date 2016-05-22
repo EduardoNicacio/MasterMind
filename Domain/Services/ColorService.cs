@@ -16,6 +16,13 @@ namespace Domain.Services
     /// </summary>
     public class ColorService
     {
+        private readonly DatabaseContext _dataContext;
+
+        public ColorService(DatabaseContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         /// <summary>
         /// Returns an instance of Color that matches to the id parameter.
         /// </summary>
@@ -23,13 +30,17 @@ namespace Domain.Services
         /// <returns>Color object.</returns>
         public Color Get(int id)
         {
-            Color color;
-            using (var dataContext = new DatabaseContext())
-            {
-                color = new ColorRepository(dataContext).Get(id);
-            }
+            return new ColorRepository(_dataContext).Get(id);
+        }
 
-            return color;
+        /// <summary>
+        /// Returns an instance of Color that matches to the rgb color.
+        /// </summary>
+        /// <param name="colorRgb">Color Rgb.</param>
+        /// <returns>Color object.</returns>
+        public Color GetByColor(string colorRgb)
+        {
+            return new ColorRepository(_dataContext).GetByColor(colorRgb);
         }
 
         /// <summary>
@@ -39,13 +50,7 @@ namespace Domain.Services
         /// <returns>IList of Color objects.</returns>
         public IList<Color> GetListRandom(int quantity)
         {
-            IList<Color> colors;
-            using (var dataContext = new DatabaseContext())
-            {
-                colors = new ColorRepository(dataContext).GetListRandom(quantity);
-            }
-
-            return colors;
+            return new ColorRepository(_dataContext).GetListRandom(quantity);
         }
 
         /// <summary>
@@ -55,14 +60,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Insert(Color color)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ColorRepository(dataContext).Insert(color);
-            }
-
-            return success;
+            return new ColorRepository(_dataContext).Insert(color);
         }
 
         /// <summary>
@@ -72,14 +70,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Update(Color color)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ColorRepository(dataContext).Update(color);
-            }
-
-            return success;
+            return new ColorRepository(_dataContext).Update(color);
         }
 
         /// <summary>
@@ -89,14 +80,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Remove(int id)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ColorRepository(dataContext).Remove(id);
-            }
-
-            return success;
+            return new ColorRepository(_dataContext).Remove(id);
         }
     }
 }

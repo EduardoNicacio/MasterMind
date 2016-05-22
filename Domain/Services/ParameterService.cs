@@ -15,6 +15,13 @@ namespace Domain.Services
     /// </summary>
     public class ParameterService
     {
+        private readonly DatabaseContext _dataContext;
+
+        public ParameterService(DatabaseContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         /// <summary>
         /// Returns an instance of Parameter that matches to name parameter.
         /// </summary>
@@ -22,14 +29,7 @@ namespace Domain.Services
         /// <returns>Parameter object.</returns>
         public Parameter Get(string name)
         {
-            Parameter parameter;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                parameter = new ParameterRepository(dataContext).Get(name);
-            }
-
-            return parameter;
+            return new ParameterRepository(_dataContext).Get(name);
         }
 
         /// <summary>
@@ -39,14 +39,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Insert(Parameter parameter)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ParameterRepository(dataContext).Insert(parameter);
-            }
-
-            return success;
+            return new ParameterRepository(_dataContext).Insert(parameter);
         }
 
         /// <summary>
@@ -56,14 +49,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Update(Parameter parameter)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ParameterRepository(dataContext).Update(parameter);
-            }
-
-            return success;
+            return new ParameterRepository(_dataContext).Update(parameter);
         }
 
         /// <summary>
@@ -73,14 +59,7 @@ namespace Domain.Services
         /// <returns>True in case of success; false instead.</returns>
         public bool Remove(string name)
         {
-            bool success;
-
-            using (var dataContext = new DatabaseContext())
-            {
-                success = new ParameterRepository(dataContext).Remove(name);
-            }
-
-            return success;
+            return new ParameterRepository(_dataContext).Remove(name);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace Persistence.Repositories
             return _dataContext.Games.Include(g => g.Players)
                 .Include(g => g.Code)
                 .Include(g => g.Lines)
+                .Include("Code.Color")
                 .First(g => g.Id == id);
         }
 
