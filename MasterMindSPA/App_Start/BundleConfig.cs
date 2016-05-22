@@ -49,8 +49,10 @@ namespace MasterMindSPA
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
-                 "~/Content/Site.css",
-                 "~/Content/styles.css"));
+                 "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/MasterMind").Include(
+                "~/Content/styles.css"));
 
             bundles.Add(new StyleBundle("~/Content/Cards").Include(
                 "~/Content/Cards.css"));

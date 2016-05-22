@@ -5,12 +5,14 @@
     <title>@ViewBag.Title - VanHackathon May 2016</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/MasterMind")
     @Styles.Render("~/Content/FontAwesome")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,6 +37,8 @@
     <div class="container body-content">
         @RenderBody()
         @RenderSection("SPAViews", required: false)
+    </div>
+    <div class="container">
         <footer>
             <p>&copy; @DateTime.Now.Year - MasterMind - VanHackathon May 2016</p>
         </footer>
