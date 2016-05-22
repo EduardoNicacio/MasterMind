@@ -264,13 +264,13 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\MasterMind.Domain.csproj">
       <Project>{f2ee48fc-f586-4dcc-9056-916bbd4a447a}</Project>
-      <Name>Domain</Name>
+      <Name>MasterMind.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
+    <ProjectReference Include="..\Persistence\MasterMind.Persistence.csproj">
       <Project>{0505595d-9c6f-4664-86b2-a7668d20a603}</Project>
-      <Name>Persistence</Name>
+      <Name>MasterMind.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

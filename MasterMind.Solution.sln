@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind", "MasterMindSPA\MasterMind.csproj", "{B900ED2A-90BD-4BAA-BB3C-7E08CEC82FEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.Web", "MasterMindSPA\MasterMind.Web.csproj", "{B900ED2A-90BD-4BAA-BB3C-7E08CEC82FEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0CE14462-C7E6-4863-B48C-BEE9F7E86A4D}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0CE144
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{0505595D-9C6F-4664-86B2-A7668D20A603}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.Persistence", "Persistence\MasterMind.Persistence.csproj", "{0505595D-9C6F-4664-86B2-A7668D20A603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F2EE48FC-F586-4DCC-9056-916BBD4A447A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.Domain", "Domain\MasterMind.Domain.csproj", "{F2EE48FC-F586-4DCC-9056-916BBD4A447A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

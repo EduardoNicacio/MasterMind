@@ -60,9 +60,9 @@
     <Compile Include="Services\GameService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
+    <ProjectReference Include="..\Persistence\MasterMind.Persistence.csproj">
       <Project>{0505595d-9c6f-4664-86b2-a7668d20a603}</Project>
-      <Name>Persistence</Name>
+      <Name>MasterMind.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

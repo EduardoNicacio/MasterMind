@@ -1,12 +1,9 @@
 ﻿namespace Domain.Enums
 {
-    public class Enums
+    public enum GameStatus
     {
-        public enum GameStatus
-        {
-            Started = 'S',
-            WaitingPlayer = 'W',
-            Finished = 'F'
-        }
+        Started = 'S',
+        WaitingPlayer = 'W',
+        Finished = 'F'
     }
 }

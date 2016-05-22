@@ -2,7 +2,7 @@
 using Persistence;
 using Persistence.Entities;
 using Persistence.Repositories;
-using static Domain.Enums.Enums;
+using Domain.Enums;
 
 namespace Domain.Services
 {
